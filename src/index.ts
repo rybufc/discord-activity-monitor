@@ -18,7 +18,7 @@ if (Cluster.isMaster)
         .then(() =>
         {
             new ActivityRegisterer(client).startListening()
-            setInterval(runInactivityManager, config.cullingIntervalSec * 1000, client, !config.computedValues!.isLocalDb)
+            setInterval(runInactivityManager, 1000, client, !config.computedValues!.isLocalDb)
             runInactivityManager(client, !config.computedValues!.isLocalDb)
                 .catch(err => Logger.debugLogError("Error running inactivity monitor for the first time. It is likely that subsequent executions will also error.", err))
         })
