@@ -60,8 +60,10 @@ export default class InactivityManager
         const reasonStr = `No activity detected within last ${guild.inactiveThresholdDays} days`
         await member.removeRole(guild.activeRole!.id, reasonStr)
 
-        if (guild.isRoleWellConfigured(guild.inactiveRoleId))
+        if (guild.isRoleWellConfigured(guild.inactiveRoleId)){
             await member.addRole(guild.inactiveRoleId, reasonStr)
+            await guild.channels.find(selectedChannel => selectedChannel.name == "bot_info").send("@" + member.nickname + " вам добавилась метка об инактиве!")
+        }
 
         guild.users.delete(member.id)
         Logger.logEvent("MarkedMemberInactive", { guildId: guild.id, memberId: member.id })
