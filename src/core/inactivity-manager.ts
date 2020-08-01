@@ -71,7 +71,7 @@ export default class InactivityManager
 
     private isInactiveBeyondThreshold(lastActiveDate: Date, now: Date, thresholdDays: number): boolean
     {
-        const dayLength = 24 * 60 * 60 * 1000
+        const dayLength = 1000
         return Math.round(Math.abs(now.getTime() - lastActiveDate.getTime()) / dayLength) > thresholdDays
     }
 
