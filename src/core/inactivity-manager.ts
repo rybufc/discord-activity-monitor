@@ -62,7 +62,7 @@ export default class InactivityManager
 
         if (guild.isRoleWellConfigured(guild.inactiveRoleId)){
             await member.addRole(guild.inactiveRoleId, reasonStr)
-            await guild.channels.find(selectedChannel => selectedChannel.name == "bot_info").send("@" + member.nickname + " вам добавилась метка об инактиве!")
+            await guild.channels.find(selectedChannel => selectedChannel.name == "bot_info").send("@" + member.nickname + ", предупреждение - вы были неактивны более трех дней.")
         }
 
         guild.users.delete(member.id)
